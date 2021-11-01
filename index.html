@@ -1,0 +1,156 @@
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width, shrink-to-fit=no">
+    <title>Panolens.js panorama image panorama</title>
+    alpha:<span id="alpha"></span><br/>
+    beta:<span id="beta"></span><br/>
+    gamma:<span id="gamma"></span><br/>
+    <style>
+      html, body {
+        margin: 0;
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+        background-color: #FFFF;
+      }
+
+      a:link, a:visited{
+        color: #bdc3c7;
+      }
+
+      .credit{
+        position: absolute;
+        text-align: center;
+        width: 100%;
+        padding: 20px 0;
+        color: #fff;
+      }
+    </style>
+  </head>
+
+  <body>
+
+    <!-- <div class="credit"><a href="https://github.com/pchen66/panolens.js">Panolens.js</a> image panorama example. Image from <a href="http://adaptivesamples.com/tag/equirectangular/">Adaptive Samples</a></div> -->
+
+    <script src="./js/three.min.js"></script>
+    <script src="./js/panolens.min.js"></script>
+    <script src="./js/DeviceOrientationController.js"></script>
+
+    <script>
+
+      const panorama = new PANOLENS.ImagePanorama( './img/IMG_20211029_142012.JPG' );
+      panorama.link( panorama, new THREE.Vector3( -807.50, 604.88, -5000.00 ),400,"./img/excited_student.png");
+    //   panorama2.link( panorama, new THREE.Vector3( -807.50, 604.88, -5000.00 ) );
+      const viewer = new PANOLENS.Viewer( { output: 'console' } );
+      viewer.add( panorama );
+
+      panorama.addEventListener('click',onTop);
+
+      function onTop(){
+        console.log("XXX");
+      }
+
+      // controls = new DeviceOrientationController( camera, renderer.domElement );
+      // controls.connect();
+      // controls.addEventListener('userinteractionstart', function() {
+      //   controls.element.style.cursor = 'move';
+      // });
+
+      // controls.addEventListener('userinteractionend', function() {
+      //   controls.element.style.cursor = 'normal';
+      // });
+
+      // if(window.DeviceOrientationEvent) {
+      //   window.addEventListener('deviceorientation', function(event) {
+      //     // var a = document.getElementById('alpha'),
+      //     // b = document.getElementById('beta'),
+      //     // g = document.getElementById('gamma'),
+      //     alpha = event.alpha,
+      //     beta = event.beta,
+      //     gamma = event.gamma;
+      //     // a.innerHTML = Math.round(alpha);
+      //     // b.innerHTML = Math.round(beta);
+      //     // g.innerHTML = Math.round(gamma);
+      //     console.log(alpha);
+      //     console.log(beta);
+      //     console.log(gamma);
+      //   }, false);
+
+      // }else{
+      //     document.querySelector('body').innerHTML = '你的瀏覽器不支援喔';
+      // }
+
+      // this.update = function () {
+      //   console.log("update");
+      // }
+
+      // function onDeviceOrientationChangeEvent(event) {
+      //   scope.deviceOrientation = event;
+      // }
+
+      // window.addEventListener('deviceorientation', onDeviceOrientationChangeEvent, false);
+
+      // function onScreenOrientationChangeEvent(event) {
+      //   scope.screenOrientation = window.orientation || 0;
+      // }
+
+      // window.addEventListener('orientationchange', onScreenOrientationChangeEvent, false);
+
+      // var setObjectQuaternion = function () {
+      //   const zee = new THREE.Vector3(0, 0, 1);
+      //   const euler = new THREE.Euler();
+      //   const q0 = new THREE.Quaternion();
+      //   const q1 = new THREE.Quaternion(-Math.sqrt(0.5), 0, 0,  Math.sqrt(0.5));
+
+      //   return function (quaternion, alpha, beta, gamma, orient) {
+      //     // 'ZXY' for the device, but 'YXZ' for us
+      //     euler.set(beta, alpha, -gamma, 'YXZ');
+
+      //     // Orient the device
+      //     quaternion.setFromEuler(euler);
+
+      //     // camera looks out the back of the device, not the top
+      //     quaternion.multiply(q1);
+
+      //     // adjust for screen orientation
+      //     quaternion.multiply(q0.setFromAxisAngle(zee, -orient));
+      //   }
+      // } ();
+
+      // function Quat2Angle(x, y, z, w) {
+      //   let pitch, roll, yaw;
+
+      //   const test = x * y + z * w;
+      //   // singularity at north pole
+      //   if (test > 0.499) {
+      //     yaw = Math.atan2(x, w) * 2;
+      //     pitch = Math.PI / 2;
+      //     roll = 0;
+
+      //     return new THREE.Vector3(pitch, roll, yaw);
+      //   }
+
+      //   // singularity at south pole
+      //   if (test < -0.499) {
+      //     yaw = -2 * Math.atan2(x, w);
+      //     pitch = -Math.PI / 2;
+      //     roll = 0;
+      //     return new THREE.Vector3(pitch, roll, yaw);
+      //   }
+
+      //   const sqx = x * x;
+      //   const sqy = y * y;
+      //   const sqz = z * z;
+
+      //   yaw = Math.atan2((2 * y * w) - (2 * x * z), 1 - (2 * sqy) - (2 * sqz));
+      //   pitch = Math.asin(2 * test);
+      //   roll = Math.atan2((2 * x * w) - (2 * y * z), 1 - (2 * sqx) - (2 * sqz));
+
+      //   return new THREE.Vector3(pitch, roll, yaw);
+      // }
+
+    </script>
+
+  </body>
+</html>
